@@ -1,14 +1,18 @@
 import ujson
 import sys
 from collections import defaultdict
+import utils
 
-def getRetweetCounts():
+
+
+
+
+def getRetweetCounts(tweets):
     retweetCount = {}
     retweetIndex = {}
-    file = open('tweets.1.json','r')
 
-    for entry in file:
-        tweet = ujson.loads(entry)
+    print tweets
+    for tweet in tweets:
         if 'retweeted_status' not in tweet:
             continue
         retweet = tweet.get('retweeted_status')
@@ -20,7 +24,6 @@ def getRetweetCounts():
         else:
             retweetCount[tweetID] = count
     
-    file.close()
     #sortedCount = sorted(retweetCount.items(), key=lambda x: x[1], reverse=True)
     sortedCount = []
     for key, value in sorted(retweetCount.iteritems(), key=lambda (k,v): (v,k)):
@@ -43,8 +46,9 @@ def getRetweetCounts():
             break
 
 def main():
-    getRetweetCounts()
+    tweets = utils.read_tweets()
+    getRetweetCounts(tweets)
 
 
 if __name__ == "__main__":
-    main()                
+    main() 
