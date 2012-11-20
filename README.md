@@ -1,20 +1,30 @@
 America--A-Bird-s-Eye-View
 ==========================
 
-An application to see the presidential approval ratings as calculated by twitter
+How to run tests
+Navigate to the project directory and execute the following commmand from the command line.
+>nosetests
+--There is a test file to test the core sentiment algorithm, a test file to test the sentiment analyazer by state,
+  and a test file to test the Hubs and Authorities algorithm.
 
-Your application's OAuth settings. Keep the "Consumer secret" a secret. This key should never be human-readable in your application.
-Access level   Read-only
-About the application permission model
-Consumer key 	9fil7Yodkk0mBUXgaESoAA
-Consumer secret 	pQOuVrH7dwRsjQCX36doHkPUFH8qCdgbbFAmCO9bvU
-Request token URL 	https://api.twitter.com/oauth/request_token
-Authorize URL 	https://api.twitter.com/oauth/authorize
-Access token URL 	https://api.twitter.com/oauth/access_token
-Callback URL 	None
-Your access token
+  
+How to Run Each Algorithm
 
-Use the access token string as your "oauth_token" and the access token secret as your "oauth_token_secret" to sign requests with your own Twitter account. Do not share your oauth_token_secret with anyone.
-Access token 	892616702-Nku2oYDLJcalBwaL2MWIUWwc7aZ6NPom0FohXJcy
-Access token secret 	tTVCcKtHy5aKmHAYHjRv8v5ZplmsA2T2U7Jc2SFdXCs
-Access level 	Read-only
+
+Sentiment Algorithm
+
+Navigate to the project directory and execute the following command from the command line.
+> python sentiment.py filtered-tweets-filename.json
+--Where filtered-tweets-filename.json is a filtered json file with a tweet per line to be read in
+--This file reads in tweets seperates each tweet by state according to what is stored in the tweet's 'location' field.  It next analyzes the sentiment
+  of the tweet, and writes the number of tweets and how they are classified to a text file named "StateCounts.txt" seperated by each state.
+
+Hubs and Authorities Algorithm
+
+Navigate to the project directory and execute the following commmand from the command line.
+>python twitterAuthority.py filtered-tweets-filename.json 
+--Where filtered-tweets-filename.json is a filtered json file with a tweet per line to be read in, each filtered tweet should keep the 'retweeted_status' field
+  and the 'retweet_count' field.
+--The authorities code goes through the entire list of retweets within the tweet list and creates a list of the most retweeted tweets. It then stores the tweet
+ and user ID for those tweets, to find the most popular users and the most popular tweets that people link to.  It then takes the tweet IDs and dumps them to a 
+ file, as well as dumping the retweets themselves in sorted order to another file for reading from the UI.
