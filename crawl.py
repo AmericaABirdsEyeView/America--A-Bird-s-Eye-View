@@ -12,7 +12,7 @@ def getTweets(n):
     r = requests.post(
             'https://stream.twitter.com/1/statuses/filter.json',
             data={'track': 'obama,barack obama,president barack obama,barack, president, president obama', 'location':'48.987386,18.005611,-124.626080,-62.361014'},
-            auth=('wesweaver25', 'smokey7kate'), 
+            auth=('username', 'password'), 
             prefetch=False
             )
 
