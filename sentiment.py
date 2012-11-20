@@ -225,7 +225,7 @@ def analyzeByState(analyzer,tweets):
                 positiveNum += 1
             else:
                 negativeNum += 1
-        positive = state + '\t' + str(positiveNum) + '\t' + str(negativeNum) + '\n'
+        positive = state + '|' + str(positiveNum) + '|' + str(negativeNum) + '\n'
         tweetOutput.write(positive)
         
             
