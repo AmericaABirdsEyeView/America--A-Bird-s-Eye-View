@@ -4,9 +4,6 @@ from collections import defaultdict
 import utils
 
 
-
-
-
 def getRetweetCounts(tweets):
     retweetCount = {}
     retweetIndex = {}
@@ -26,20 +23,20 @@ def getRetweetCounts(tweets):
     
     #sortedCount = sorted(retweetCount.items(), key=lambda x: x[1], reverse=True)
     sortedCount = []
-    for key, value in sorted(retweetCount.iteritems(), key=lambda (k,v): (v,k)):
+    for key, value in sorted(retweetCount.iteritems(), key=lambda (k,v): (v,k), reverse=True):
         sortedCount.append(key)
 
 
     file2 = open('topRetweets.txt','w')
-    file3 = open('retweetDicts.txt','w')
+    file3 = open('retweetDicts.json','w')
     
     ct=0
     for elem in sortedCount:
         ct = ct+1
         file2.write(str(elem))
         file2.write(str("\n"))
-        file3.write(str(retweetIndex[elem]))
-        file3.write(str("\n"))
+        file3.write(ujson.dumps(retweetIndex[elem]))
+        file3.write("\n")
         if ct == 20:
             file2.close()
             file3.close()

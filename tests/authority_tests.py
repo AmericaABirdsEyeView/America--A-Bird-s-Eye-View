@@ -5,7 +5,7 @@
 # this file.
 
 import unittest
-
+import ujson
 import twitterAuthority
 import utils
 import fileinput
@@ -72,9 +72,19 @@ class TestAuthority(unittest.TestCase):
 
 
     def test_authorities(self):
-        #Josue put your test here
-        self.assertEqual(0,1)
-       
+        ids = open('topRetweets.txt','r')
+        retweetIds = []
+        expectedIds = [7,5,1,6,2,8,3,4]
+        for line in ids:
+            retweetIds.append(int(line))
+        
+        self.assertNotEqual(0, len(retweetIds), "Empty list not expected")
+        
+        for num in range(0,8):
+            self.assertEqual(expectedIds[num], retweetIds[num], "Expected tweet ID does not match")
+        
+            
+        ids.close()
 
 if __name__ == '__main__':
     unittest.main()
