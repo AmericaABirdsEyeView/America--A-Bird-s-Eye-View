@@ -102,6 +102,8 @@ def filter_classes(tweets):
     filtered = collections.defaultdict(list)
     for tweet in tweets:
         tweet_class = None
+        if 'text' not in tweet:
+            continue
         # sometimes html gets into the emoticons
         text = tweet['text'].replace('&lt;','<').replace('&gt;','>')
         for clas,smilies in emoticons.iteritems():
