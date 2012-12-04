@@ -48,9 +48,12 @@ def getRetweetCounts(tweets):
 def getSentiment(analyzer):
     file = open('retweetDicts.json','r')
     tweets = []
+    positiveCount = 0
+    negativeCount = 0
     for line in file:
         tweet = ujson.loads(line)
-        tweet['sentiment'] = analyzer.sentiment(tweet)
+        sentiment = analyzer.sentiment(tweet)
+        tweet['sentiment'] = sentiment
         tweets.append(tweet)
     file.close
     file3 = open('retweetSentiment.json','w')
