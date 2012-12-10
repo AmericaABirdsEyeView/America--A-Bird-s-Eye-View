@@ -1,3 +1,0 @@
-Alabama|2|1
-New York|0|2
-Texas|2|1
