@@ -102,9 +102,9 @@ def filter_classes(tweets):
     filtered = collections.defaultdict(list)
     for tweet in tweets:
         tweet_class = None
+        # sometimes html gets into the emoticons
         if 'text' not in tweet:
             continue
-        # sometimes html gets into the emoticons
         text = tweet['text'].replace('&lt;','<').replace('&gt;','>')
         for clas,smilies in emoticons.iteritems():
             if any(smily in text for smily in smilies):
@@ -178,9 +178,10 @@ def printTweets(tweets):
             
 states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland',
     'Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania',
-    'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
+    'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming',"District of Columbia","Hawaii"]
+
 abbreviations = ['al','ak','az','ar','ca','co','ct','de','fl','ga','id','il','in','ia','ks','ky','la','me','md','ma','mi','mn','ms','mo','mt','ne','nv','nh','nj','nm','ny','nc','nd','oh','ok','or','pa','ri','sc','sd','tn',
-    'tx','ut','vt','va','wa','wv','wi','wy']
+    'tx','ut','vt','va','wa','wv','wi','wy','dc','hi']
    
             
 def countTweets(tweets):
@@ -198,6 +199,35 @@ def countTweets(tweets):
         loc = tokenize(loc)
         for x in range(0,len(states)-1):
             if states[x].lower() in loc or abbreviations[x] in loc:
+                
+                if states[x].lower() == "washington" and states[x].lower() in loc:
+                    indexW = loc.index("washington")
+                    if 'd' not in loc:
+                        indexD = -1
+                    else: 
+                        indexD = loc.index('d')
+                        
+                    if 'c' not in loc:
+                        indexC = -1
+                    else: 
+                        indexC = loc.index('c')
+                        
+                    if 'dc' not in loc:
+                        indexDC = -1
+                    else: 
+                        indexDC = loc.index('dc')
+                        
+                    if indexW-indexD == 1 and indexD-indexC == 1:
+                        if "District of Columbia" not in stateCounter:
+                            stateCounter["District of Columbia"] = [tweet]
+                        else:        
+                            stateCounter["District of Columbia"].append(tweet)
+                    if indexW-indexDC == 1:
+                        if "District of Columbia" not in stateCounter:
+                            stateCounter["District of Columbia"] = [tweet]
+                        else:        
+                            stateCounter["District of Columbia"].append(tweet)
+
                 if states[x] not in stateCounter:
                     stateCounter[states[x]] = [tweet]
                 else:
@@ -214,9 +244,11 @@ def countTweets(tweets):
             
 def analyzeByState(analyzer,tweets):
     countedTweets = countTweets(tweets)
-    tweetOutput = open('StateCounts.txt', 'w')   
+    tweetOutput = open('StateCounts.txt', 'w')  
     for state in states:
         if state not in countedTweets:
+            positive = state + '|' + '0' + '|' + '0' + '\n'
+            tweetOutput.write(positive)                
             continue
         positiveNum = 0
         negativeNum = 0
@@ -238,26 +270,13 @@ def main():
     analyzer = SentimentAnalyzer()
     train_group, eval_group = split_train_eval(filtered)  
     train_group.update(eval_group)
-    for classy in train_group:
-        print classy + "\t" + str(len(train_group[classy]))
+    #for classy in train_group:
+        #print classy + "\t" + str(len(train_group[classy]))
     analyzer.train_on_filtered(filtered)
     tweets = utils.read_tweets()
     analyzeByState(analyzer,tweets)
     
-    """
-    train_group, eval_group = split_train_eval(filtered)
-    analyzer = SentimentAnalyzer()
 
-    print 'starting training'
-    train_group.update(eval_group)
-    analyzer.train_on_filtered(train_group)
-
-    cond_probs('positive', analyzer.term_prob)
-    cond_probs('negative', analyzer.term_prob)
-
-    print 'starting evaluation'
-    evaluate(analyzer,eval_group)
-    """
 
 
 if __name__=="__main__":
