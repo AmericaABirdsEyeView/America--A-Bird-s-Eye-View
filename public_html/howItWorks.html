@@ -1,0 +1,99 @@
+<html>
+	<script type="text/javascript" src="Scripts/TwitterBootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="Scripts/TwitterBootstrap/js/bootstrap-responsive.min.js"></script>
+	
+	<link type="text/css" rel="stylesheet" href="Scripts/TwitterBootstrap/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="Scripts/TwitterBootstrap/css/bootstrap-responsive.min.css"/>
+	
+	<link rel="icon" type="image/png" href="Bird16.png">
+	<title>America, A Bird's Eye View</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+	
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="index.html"><img src="Bird32.png">  America, A Bird's Eye View</a>
+				<ul class="nav">
+					<li><a href="index.html">Home</a></li>
+					<li class="active"><a href="howItWorks.html">How it works</a></li>
+					<li><a href="ourData.html">Our Data</a></li>
+				</ul>
+			</div>
+		</div>
+    </div>
+	<div style="position:absolute; top:60px; left:50px;" class="row">
+		<div class="span1">
+		</div>
+		<div class="span11">
+			<h2>How it works</h2>
+			<hr>
+			<p>
+				Here is a brief overview of how this application works. If you're more technical and want to see the code, you can check out
+				our <a href="https://github.com/">GitHub</a> account <a href="https://github.com/AmericaABirdsEyeView/America--A-Bird-s-Eye-View"> here</a>.
+			</p>
+			<br />
+			<h4>Data Collection</h4>
+			<p>
+				In order to collect the data we need, we employ the <a href="https://dev.twitter.com/docs/streaming-apis">Twitter streaming API</a>. We wrote a Python script that initiates a connection to Twitter, and begins downloading tweets that match our requirements. For key terms, we use “obama, barack obama, president barack obama, barack, president, president Obama” and Twitter gives us the tweets that match any of those terms, as they are tweeted. We collect tweets in chunks of 50,000, and collect 5 times a day. This allows us to evenly spread our target of collecting 250,000 tweets per day in such a manner that no one time zone is unfairly represented. 
+			</p>
+			<br />
+			<h4>Sentiment Analysis</h4>
+			<p>
+				First, the algorithm goes through every tweet, and separates them by geographic location. This is done by searching 
+				for recognizable locations within a tweet's “location” field. The algorithm then builds a training set from the data 
+				by gathering all tweets that contain a positive or negative emoticon, and classifying these tweets as positive or negative. 
+				From this training set, the algorithm builds a <a href="http://jqueryui.com/datepicker/">Naïve Bayes Classifier</a> by 
+				analyzing the <a href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">term frequency-inverse document frequency</a> of each 
+				term in the tweet vocabulary. The sentiment of each tweet is then evaluated by state and is classified as either “positive” or 
+				“negative”. The results of the analysis are then written to a text file and put on our server.			
+			</p>
+			<br />
+			<h4>Hubs and Authorities</h4>
+			<p>
+				In order to determine which tweets, hashtags, and URLs are the most popular or are the top “authorities”, the algorithm goes 
+				through each tweet and extracts the “retweeted_status” field. From this field the algorithm extracts the IDs of tweets that are being retweeted, 
+				and any hashtags or URLs that these tweets contain. Next, the algorithm analyzes all of the extracted retweets, hashtags, and URLs to determine 
+				the top 10 most “authoritative” tweets, hashtags, and urls.			
+			</p>
+			<br />
+			<h4>User Interface</h4>
+			<p>
+				Our website uses a combination of <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>, 
+				<a href="http://jquery.com/">jQuery</a>, and <a href="http://jqueryui.com/">jQuery UI</a> to gain it's aesthetic
+				appeal, but it does so much more than look pretty. It allows users to pick a date that they want to see data for, 
+				using a <a href="http://jqueryui.com/datepicker/">jQuery UI Datepicker</a>. 
+				Once the user picks a date, using JavaScript and <a href="http://en.wikipedia.org/wiki/Ajax_(programming)">AJAX</a> 
+				we grab the data files corresponding to that 
+				date. First, we parse the approval ratings data. We iterate through each state, coloring them corresponding 
+				to their approval rating (which is calculated by positive tweets / total number of tweets), setting the state's HTML 
+				title property to the approval, and calculating the
+				national approval rating as we go along. Next, we parse the top tweets. We go through the tweet's JSON representation
+				and grab the profile_image_url_https, text, name, and screen_name elements. We use the profile_image_url_https to get the
+				profile picture, the screen name to generate a link to the Twitter profile page, and the name and the text to display.
+				However, before we display the text, we parse it using regular expressions to create links out of the URLs, hashtags, and
+				replies in the text. Once that is done, we parse our top URLs, for these we use the title and URL provided by the Hubs and
+				Authorities algorithm to display the title and a link, and we use <a href="http://webthumb.web-backlinks.net/">Web Backlinks</a>
+				to generate our image. Last, we parse the top hashtags, for these we simply use the hashtag as a title, generate a link to
+				the Twitter search page for that hashtag, and use the same <a href="http://webthumb.web-backlinks.net/">Web Backlinks</a> service
+				to generate the image, because we couldn't think of anything better to display as an image.
+			</p>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<script type="text/javascript">stLight.options({publisher: "59dff727-6acc-4b99-981d-57388e6e47e8"});</script>
+	<script>
+		var options={ "publisher": "59dff727-6acc-4b99-981d-57388e6e47e8", "position": "left", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "googleplus", "linkedin", "pinterest", "email", "sharethis", "stumbleupon"]}};
+		var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+	</script>
+</html>

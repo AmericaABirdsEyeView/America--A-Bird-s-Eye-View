@@ -1,0 +1,82 @@
+<html>
+	<script type="text/javascript" src="Scripts/TwitterBootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="Scripts/TwitterBootstrap/js/bootstrap-responsive.min.js"></script>
+	
+	<link type="text/css" rel="stylesheet" href="Scripts/TwitterBootstrap/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="Scripts/TwitterBootstrap/css/bootstrap-responsive.min.css"/>
+	
+	<link rel="icon" type="image/png" href="Bird16.png">
+	<title>America, A Bird's Eye View</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+	
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="index.html"><img src="Bird32.png">  America, A Bird's Eye View</a>
+				<ul class="nav">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="howItWorks.html">How it works</a></li>
+					<li class="active"><a href="ourData.html">Our Data</a></li>
+				</ul>
+			</div>
+		</div>
+    </div>
+	<div style="position:absolute; top:60px; left:50px;" class="row">
+		<div class="span1">
+		</div>
+		<div class="span11">
+			<h2>Our Data</h2>
+			<hr>
+			<p>
+				Unfortunately, the web server we are using only allows us to host 1GB of data, so we aren't able to put all of our pre-processed data online. 
+				However, we are more than happy to share with you our processed data.
+			</p>
+			<br />
+			<h4>Approval Ratings</h4>
+			<p>
+				Our approval ratings data is located <a href="Data/ApprovalRatings/">here</a>. The file names are in the following format mm_dd_yyyy.txt.
+				Inside the text file, the file formatting is pretty straight forward: state-name|number-of-positive-tweets|number-of-negative-tweets with the data
+				for one state per line.
+			</p>
+			<br />
+			<h4>Top Tweets</h4>
+			<p>
+				Our top tweets data is located <a href="Data/TopTweets/">here</a>. The file names are in the following format mm_dd_yyyy.txt.
+				Inside the JSON file, is the JSON format of a tweet, as returned by the <a href="https://dev.twitter.com/">Twitter API</a>. The tweets 
+				are sorted in ascending order by popularity.
+			</p>
+			<br />
+			<h4>Top URLs</h4>
+			<p>
+				Our top URLs data is located <a href="Data/TopURLs/">here</a>. The file names are in the following format mm_dd_yyyy.txt.
+				Inside the text file, there are two pieces of information for each of our top URLs. First, the URL itself, then a "||", followed by the
+				title of the page that the URL points too, as provided by the <a href="http://decenturl.com/tools"> Decent URL Title API </a>, then a new line.
+				The URLs are in ascending order, sorted by popularity.
+			</p>
+			<br />
+			<h4>Top Hashtags</h4>
+			<p>
+				Our top hashtags data is located <a href="Data/TopHashtags/">here</a>. The file names are in the following format mm_dd_yyyy.txt.
+				Inside the text file, the hashtags are sorted in ascending order by popularity, and there is one hashtag per line.
+			</p>
+		</div>
+			<br />
+	<br />
+	<br />
+	</div>
+	
+	<script type="text/javascript">stLight.options({publisher: "59dff727-6acc-4b99-981d-57388e6e47e8"});</script>
+	<script>
+		var options={ "publisher": "59dff727-6acc-4b99-981d-57388e6e47e8", "position": "left", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "googleplus", "linkedin", "pinterest", "email", "sharethis", "stumbleupon"]}};
+		var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+	</script>
+</html>

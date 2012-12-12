@@ -1,0 +1,51 @@
+Alabama|542|762
+Alaska|121|151
+Arizona|655|995
+Arkansas|255|238
+California|3084|3955
+Colorado|508|693
+Connecticut|242|349
+Delaware|347|930
+Florida|2179|3026
+Georgia|1102|1607
+Idaho|128|177
+Illinois|791|1014
+Indiana|2083|3180
+Iowa|181|223
+Kansas|253|323
+Kentucky|325|482
+Louisiana|679|1161
+Maine|221|429
+Maryland|426|616
+Massachusetts|528|655
+Michigan|588|979
+Minnesota|441|550
+Mississippi|187|336
+Missouri|333|463
+Montana|115|170
+Nebraska|142|182
+Nevada|266|401
+New Hampshire|54|94
+New Jersey|348|435
+New Mexico|111|89
+New York|1209|1422
+North Carolina|559|785
+North Dakota|35|44
+Ohio|905|1368
+Oklahoma|350|531
+Oregon|403|571
+Pennsylvania|887|1156
+Rhode Island|56|56
+South Carolina|267|350
+South Dakota|30|31
+Tennessee|529|782
+Texas|2653|3920
+Utah|222|327
+Vermont|42|54
+Virginia|916|1282
+Washington|1402|1685
+West Virginia|88|156
+Wisconsin|403|524
+Wyoming|46|66
+District of Columbia|1089|1273
+Hawaii|250|325
