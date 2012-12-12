@@ -22,9 +22,13 @@ Navigate to the project directory and execute the following command from the com
 Hubs and Authorities Algorithm
 
 Navigate to the project directory and execute the following commmand from the command line.
->python twitterAuthority.py filtered-tweets-filename.json 
+>python authority.py filtered-tweets-filename.json 
 --Where filtered-tweets-filename.json is a filtered json file with a tweet per line to be read in, each filtered tweet should keep the 'retweeted_status' field
   and the 'retweet_count' field.
---The authorities code goes through the entire list of retweets within the tweet list and creates a list of the most retweeted tweets. It then stores the tweet
- and user ID for those tweets, to find the most popular users and the most popular tweets that people link to.  It then takes the tweet IDs and dumps them to a 
- file, as well as dumping the retweets themselves in sorted order to another file for reading from the UI.
+--The authorities code goes through the entire list of retweets within the tweet list and creates a list of the most retweeted tweets, hashtags, and URLS. It then 
+prints the top 10 tweets, hashtags, and URLS to files respectively named topRetweets.json, topHashTags.txt, and topURLS.txt
+
+
+How to Run The Website Locally
+--Navigate to the website directory and run the index.html file.
+--The full website should run locally on the host machine, however we only hosted the website on the internet, it has not been tested locally.
